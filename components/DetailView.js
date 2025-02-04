@@ -10,80 +10,84 @@ import {
 
 const DetailView = ({navigation}) => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.icon}
-          onPress={() => navigation.goBack()}>
-          <Image
-            source={require('../assets/pics/img3.png')}
+    <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <TouchableOpacity
             style={styles.icon}
-          />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Detail</Text>
-        <TouchableOpacity style={styles.icon}>
-          <Image
-            source={require('../assets/pics/img2.png')}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-      </View>
-      <Image
-        source={require('../assets/pics/card-img1.png')}
-        style={styles.coffeeImage}
-      />
-
-      <Image
-        source={require('../assets/pics/img1.png')}
-        style={{width: 50, height: 50, top: 65, left: 240}}
-      />
-      <Image
-        source={require('../assets/pics/img4.png')}
-        style={{width: 50, height: 50, top: 15, left: 310}}
-      />
-      <View style={styles.infoContainer}>
-        <Text style={styles.title}>Cappucino</Text>
-        <Text style={styles.subtitle}>with Chocolate</Text>
-        <View style={styles.rating}>
-          <Text style={styles.ratingText}>⭐ 4.8</Text>
-          <Text style={styles.reviews}>(230)</Text>
+            onPress={() => navigation.goBack()}>
+            <Image
+              source={require('../assets/pics/img3.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>Detail</Text>
+          <TouchableOpacity style={styles.icon}>
+            <Image
+              source={require('../assets/pics/img2.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
-      </View>
-      <Image
-        style={{
-          width: 350,
-          height: 1,
-          position: 'relative',
-          left: 10,
-          top: -68,
-        }}
-        source={require('../assets/pics/Line.png')}
-      />
+        <Image
+          source={require('../assets/pics/card-img1.png')}
+          style={styles.coffeeImage}
+        />
 
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.description}>
-          A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of
-          espresso coffee and 85ml of fresh milk the fo..{' '}
-          <Text style={styles.readMore}>Read More</Text>
-        </Text>
-      </View>
+        <Image
+          source={require('../assets/pics/img1.png')}
+          style={{width: 50, height: 50, top: 65, left: 240}}
+        />
+        <Image
+          source={require('../assets/pics/img4.png')}
+          style={{width: 50, height: 50, top: 15, left: 310}}
+        />
+        <View style={styles.infoContainer}>
+          <Text style={styles.title}>Cappucino</Text>
+          <Text style={styles.subtitle}>with Chocolate</Text>
+          <View style={styles.rating}>
+            <Text style={styles.ratingText}>⭐ 4.8</Text>
+            <Text style={styles.reviews}>(230)</Text>
+          </View>
+        </View>
+        <Image
+          style={{
+            width: 350,
+            height: 1,
+            position: 'relative',
+            left: 10,
+            top: -68,
+          }}
+          source={require('../assets/pics/Line.png')}
+        />
 
-      <Text style={styles.sizeTitle}>Size</Text>
-      <View style={styles.sizeContainer}>
-        <TouchableOpacity
-          style={[styles.sizeButton, styles.sizeButtonInactive]}>
-          <Text style={styles.sizeButtonText}>S</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.sizeButton, styles.sizeButtonActive]}>
-          <Text style={[styles.sizeButtonText, styles.activeSizeText]}>M</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.sizeButton, styles.sizeButtonInactive]}>
-          <Text style={styles.sizeButtonText}>L</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.descriptionContainer}>
+          <Text style={styles.descriptionTitle}>Description</Text>
+          <Text style={styles.description}>
+            A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml
+            of espresso coffee and 85ml of fresh milk the fo..{' '}
+            <Text style={styles.readMore}>Read More</Text>
+          </Text>
+        </View>
 
+        <Text style={styles.sizeTitle}>Size</Text>
+        <View style={styles.sizeContainer}>
+          <TouchableOpacity
+            style={[styles.sizeButton, styles.sizeButtonInactive]}>
+            <Text style={styles.sizeButtonText}>S</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.sizeButton, styles.sizeButtonActive]}>
+            <Text style={[styles.sizeButtonText, styles.activeSizeText]}>
+              M
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.sizeButton, styles.sizeButtonInactive]}>
+            <Text style={styles.sizeButtonText}>L</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
       <Text style={styles.priceTitle}>Price</Text>
       <View style={styles.footer}>
         <Text style={styles.price}>$ 4.53</Text>
@@ -93,7 +97,7 @@ const DetailView = ({navigation}) => {
           <Text style={styles.buyButtonText}>Buy Now</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -239,6 +243,8 @@ const styles = StyleSheet.create({
   priceTitle: {
     fontSize: 18,
     color: '#9B9B9B',
+    marginTop: -25,
+    top: 40,
     left: 22,
     zIndex: 1,
   },
@@ -246,13 +252,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 20,
     paddingHorizontal: 20,
     paddingBottom: 60,
     borderWidth: 1,
     borderColor: '#F1F1F1',
     backgroundColor: '#F9F9F9',
-    top: -60,
+    marginTop: -20,
+    top: 20,
     borderTopEndRadius: 35,
     borderTopStartRadius: 35,
     marginHorizontal: -20,
