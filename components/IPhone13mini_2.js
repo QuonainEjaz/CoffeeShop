@@ -9,11 +9,9 @@ import {
   FlatList,
 } from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
 const Tab = createBottomTabNavigator();
-const promoImage = require('../assets/pics/dashboard.png');
+
 const coffeeTypes = ['Cappuccino', 'Macchiato', 'Latte', 'Americano'];
 const coffeeData = [
   {
@@ -87,7 +85,10 @@ const HomeScreen = ({navigation}) => {
           </View>
         </View>
         <View style={styles.promoContainer}>
-          <Image source={promoImage} style={styles.promoImage} />
+          <Image
+            source={require('../assets/pics/dashboard.png')}
+            style={styles.promoImage}
+          />
           <View style={styles.promoOverlay}>
             <Text style={styles.promoTag}>Promo</Text>
             <Text style={styles.promoText}>Buy one get one Free</Text>
@@ -118,7 +119,8 @@ const HomeScreen = ({navigation}) => {
             numColumns={2}
             renderItem={({item}) => (
               <View style={styles.coffeeCard}>
-                <TouchableOpacity onPress={()=>navigation.navigate('IPhone13mini_3')}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('IPhone13mini_3')}>
                   <Image source={item.image} style={styles.coffeeImage} />
                 </TouchableOpacity>
 
@@ -147,63 +149,61 @@ const HomeScreen = ({navigation}) => {
 
 const iPhone13mini_2 = () => {
   return (
-    
-      <Tab.Navigator
-        screenOptions={{headerShown: false, tabBarStyle: {height: 60}}}>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: () => (
-              <Image
-                source={require('../assets/pics/Home.png')}
-                style={{width: 27.26, height: 25.79, marginTop: 15}}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Favorites"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: () => (
-              <Image
-                source={require('../assets/pics/Heart.png')}
-                style={{width: 27.26, height: 25.79, marginTop: 15}}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="."
-          component={HomeScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: () => (
-              <Image
-                source={require('../assets/pics/Bag.png')}
-                style={{width: 27.26, height: 25.79, marginTop: 15}}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: '',
-            tabBarIcon: () => (
-              <Image
-                source={require('../assets/pics/Notification.png')}
-                style={{width: 27.26, height: 25.79, marginTop: 15}}
-              />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    
+    <Tab.Navigator
+      screenOptions={{headerShown: false, tabBarStyle: {height: 60}}}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/pics/Home.png')}
+              style={{width: 27.26, height: 25.79, marginTop: 15}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Favorites"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/pics/Heart.png')}
+              style={{width: 27.26, height: 25.79, marginTop: 15}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="."
+        component={HomeScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/pics/Bag.png')}
+              style={{width: 27.26, height: 25.79, marginTop: 15}}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: () => (
+            <Image
+              source={require('../assets/pics/Notification.png')}
+              style={{width: 27.26, height: 25.79, marginTop: 15}}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

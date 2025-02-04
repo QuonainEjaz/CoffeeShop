@@ -17,6 +17,7 @@ const IPhone13mini_6 = ({navigation}) => {
 
       <View>
         <TouchableOpacity
+        onPress={()=> navigation.navigate('TrackOrder')}
           style={styles.button}>
           <Text style={styles.buttonText}>Track Your Order</Text>
         </TouchableOpacity>
