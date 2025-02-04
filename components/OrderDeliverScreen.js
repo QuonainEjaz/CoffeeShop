@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 
-
-const IPhone13mini_5 = ({navigation}) => {
-  const [deliveryType, setDeliveryType] = useState('Pick Up');
+const OrderDeliverScreen = ({navigation}) => {
+  const [deliveryType, setDeliveryType] = useState('Delivery');
   const [quantity, setQuantity] = useState(1);
   const price = 4.53;
   const deliveryFee = 1.0;
@@ -11,9 +10,8 @@ const IPhone13mini_5 = ({navigation}) => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header} >
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image
             source={require('../assets/pics/img3.png')}
             style={styles.icon}
@@ -22,14 +20,13 @@ const IPhone13mini_5 = ({navigation}) => {
         <Text style={styles.headerTitle}>Order</Text>
       </View>
 
-      {/* Delivery Toggle */}
       <View style={styles.toggleContainer}>
         <TouchableOpacity
           style={[
             styles.toggleButton,
             deliveryType === 'Delivery' && styles.activeToggle,
           ]}
-          onPress={() => {setDeliveryType('Delivery'); navigation.navigate('IPhone13mini_4')}}>
+          onPress={() => setDeliveryType('Delivery')}>
           <Text
             style={[
               styles.toggleText,
@@ -43,7 +40,10 @@ const IPhone13mini_5 = ({navigation}) => {
             styles.toggleButton,
             deliveryType === 'Pick Up' && styles.activeToggle,
           ]}
-          onPress={() => setDeliveryType('Pick Up')}>
+          onPress={() => {
+            setDeliveryType('Pick Up');
+            navigation.navigate('OrderPickupScreen');
+          }}>
           <Text
             style={[
               styles.toggleText,
@@ -54,14 +54,20 @@ const IPhone13mini_5 = ({navigation}) => {
         </TouchableOpacity>
       </View>
 
-      {/* Delivery Address */}
-      <Text style={styles.sectionTitle}>Pickup Address</Text>
+      <Text style={styles.sectionTitle}>Delivery Address</Text>
       <View style={styles.addressContainer}>
-        <Text style={styles.addressTitle}>The Coffee Shop</Text>
+        <Text style={styles.addressTitle}>Jl. Kpg Sutoyo</Text>
         <Text style={styles.addressDetail}>
           Kpg. Sutoyo No. 620, Bilzen, Tanjungbalai.
         </Text>
         <View style={styles.addressButtons}>
+          <TouchableOpacity style={styles.addressButton}>
+            <Image
+              source={require('../assets/pics/edit.png')}
+              style={{width: 17, height: 17}}
+            />
+            <Text style={styles.addressButtonText}> Edit Address</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.addressButton}>
             <Image
               source={require('../assets/pics/note.png')}
@@ -75,7 +81,7 @@ const IPhone13mini_5 = ({navigation}) => {
         source={require('../assets/pics/Line.png')}
         style={{width: 355, height: 1, marginBottom: 20, marginLeft: 10}}
       />
-      {/* Coffee Item */}
+
       <View style={styles.itemContainer}>
         <Image
           source={require('../assets/pics/card-img1.png')}
@@ -107,7 +113,6 @@ const IPhone13mini_5 = ({navigation}) => {
         style={{width: 410, height: 4, marginBottom: 10, marginLeft: -20}}
       />
 
-      {/* Discount */}
       <TouchableOpacity style={styles.discountContainer}>
         <Image
           source={require('../assets/pics/Discount.png')}
@@ -120,7 +125,6 @@ const IPhone13mini_5 = ({navigation}) => {
         />
       </TouchableOpacity>
 
-      {/* Payment Summary */}
       <Text style={styles.sectionTitle}>Payment Summary</Text>
       <View style={styles.paymentRow}>
         <Text style={styles.paymentText}>Price</Text>
@@ -151,21 +155,43 @@ const IPhone13mini_5 = ({navigation}) => {
           $ {totalPayment}
         </Text>
       </View>
-      {/* Payment Method */}
-      <View style={{marginTop: 20,borderColor: '#F1F1F1', borderWidth: 1,marginHorizontal: -20, borderTopEndRadius: 40, borderTopStartRadius: 40,paddingHorizontal: 30}}>
+
+      <View
+        style={{
+          marginTop: 20,
+          borderColor: '#F1F1F1',
+          borderWidth: 1,
+          marginHorizontal: -20,
+          borderTopEndRadius: 40,
+          borderTopStartRadius: 40,
+          paddingHorizontal: 30,
+        }}>
         <View style={styles.paymentMethod}>
           <TouchableOpacity style={styles.paymentMethodButton}>
-            <Image source={require('../assets/pics/moneys.png')} style={{width: 28, height: 28, marginTop: 0, marginLeft: 10, marginRight: 10}}/>
+            <Image
+              source={require('../assets/pics/moneys.png')}
+              style={{
+                width: 28,
+                height: 28,
+                marginTop: 0,
+                marginLeft: 10,
+                marginRight: 10,
+              }}
+            />
             <Text style={styles.paymentMethodText}> Cash </Text>
             <Text style={styles.paymentAmount}>$ {totalPayment}</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require('../assets/pics/dots.png')} style={{width: 28, height: 28, marginTop: 10, marginRight: 10}}/>
+            <Image
+              source={require('../assets/pics/dots.png')}
+              style={{width: 28, height: 28, marginTop: 10, marginRight: 10}}
+            />
           </TouchableOpacity>
         </View>
 
-        {/* Order Button */}
-        <TouchableOpacity style={styles.orderButton} onPress={()=>navigation.navigate('IPhone13mini_6')}>
+        <TouchableOpacity
+          style={styles.orderButton}
+          onPress={() => navigation.navigate('ThankYouMessageScreen')}>
           <Text style={styles.orderButtonText}>Order</Text>
         </TouchableOpacity>
       </View>
@@ -173,7 +199,6 @@ const IPhone13mini_5 = ({navigation}) => {
   );
 };
 
-// Styles
 const styles = {
   container: {flex: 1, padding: 20, backgroundColor: '#F9F9F9'},
   header: {flexDirection: 'row', alignItems: 'center', marginBottom: 20},
@@ -289,7 +314,15 @@ const styles = {
     padding: 10,
     borderRadius: 10,
   },
-  paymentMethodText: {fontSize: 16, marginLeft: 10,backgroundColor: '#C67C4E', borderRadius: 20,color: '#ffffff', fontWeight: '400', padding: 3},
+  paymentMethodText: {
+    fontSize: 16,
+    marginLeft: 10,
+    backgroundColor: '#C67C4E',
+    borderRadius: 20,
+    color: '#ffffff',
+    fontWeight: '400',
+    padding: 3,
+  },
   paymentAmount: {fontSize: 16, marginLeft: 10},
 
   orderButton: {
@@ -301,4 +334,4 @@ const styles = {
   orderButtonText: {fontSize: 18, color: '#fff', fontWeight: 'bold'},
 };
 
-export default IPhone13mini_5;
+export default OrderDeliverScreen;

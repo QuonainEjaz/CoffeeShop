@@ -44,7 +44,7 @@ const coffeeData = [
   },
 ];
 
-const HomeScreen = ({navigation}) => {
+const Home = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#F5F5F5'}}>
       <ScrollView>
@@ -120,7 +120,7 @@ const HomeScreen = ({navigation}) => {
             renderItem={({item}) => (
               <View style={styles.coffeeCard}>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('IPhone13mini_3')}>
+                  onPress={() => navigation.navigate('DetailView')}>
                   <Image source={item.image} style={styles.coffeeImage} />
                 </TouchableOpacity>
 
@@ -147,13 +147,13 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-const iPhone13mini_2 = () => {
+const HomeScreen = () => {
   return (
     <Tab.Navigator
       screenOptions={{headerShown: false, tabBarStyle: {height: 60}}}>
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={Home}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -166,7 +166,7 @@ const iPhone13mini_2 = () => {
       />
       <Tab.Screen
         name="Favorites"
-        component={HomeScreen}
+        component={Home}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -179,7 +179,7 @@ const iPhone13mini_2 = () => {
       />
       <Tab.Screen
         name="."
-        component={HomeScreen}
+        component={Home}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -192,7 +192,7 @@ const iPhone13mini_2 = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={HomeScreen}
+        component={Home}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -207,7 +207,7 @@ const iPhone13mini_2 = () => {
   );
 };
 
-export default iPhone13mini_2;
+export default HomeScreen;
 
 const styles = {
   container: {},

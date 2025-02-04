@@ -10,7 +10,7 @@ import {
   StatusBar
 } from 'react-native';
 
-const IPhone13mini_1 = ({ navigation }) => {
+const SplashScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar BarStyle="light-content" style={{ backgroundColor: '#010101' }} />
@@ -25,7 +25,7 @@ const IPhone13mini_1 = ({ navigation }) => {
         <Text style={styles.subtext}>
           The best grain, the finest roast, the powerful flavor.
         </Text>
-        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('IPhone13mini_2')}>
+        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('HomeScreen')}>
           <Image style={{width: 33, height: 33, left:-8}} source={require('../assets/pics/Google-Logo.png')} />
           <Text style={{fontSize: 20, color: '#0000008A', fontWeight: 500}}>Continue with Google</Text>
         </TouchableOpacity>
@@ -82,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone13mini_1;
+export default SplashScreen;

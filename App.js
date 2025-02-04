@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import IPhone13mini_1 from './components/IPhone13mini_1';
-import IPhone13mini_2 from './components/IPhone13mini_2';
-import IPhone13mini_3 from './components/IPhone13mini_3';
-import IPhone13mini_4 from './components/IPhone13mini_4';
-import IPhone13mini_5 from './components/IPhone13mini_5';
-import IPhone13mini_6 from './components/IPhone13mini_6';
+import SplashScreen from './components/SplashScreen';
+import HomeScreen from './components/HomeScreen';
+import DetailView from './components/DetailView';
+import OrderDeliverScreen from './components/OrderDeliverScreen';
+import  OrderPickupScreen from './components/OrderPickupScreen';
+import ThankYouMessageScreen from './components/ThankYouMessageScreen';
 import TrackOrder from './components/TrackOrder';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -17,35 +17,35 @@ enableScreens();
 const App = () => {
   return (
     <NavigationContainer >
-        <Stack.Navigator initialRouteName="IPhone13mini_1">
+        <Stack.Navigator initialRouteName="SplashScreen">
           <Stack.Screen
-            name="IPhone13mini_1"
-            component={IPhone13mini_1}
+            name="SplashScreen"
+            component={SplashScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="IPhone13mini_2"
-            component={IPhone13mini_2}
+            name="HomeScreen"
+            component={HomeScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="IPhone13mini_3"
-            component={IPhone13mini_3}
+            name="DetailView"
+            component={DetailView}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="IPhone13mini_4"
-            component={IPhone13mini_4}
+            name="OrderDeliverScreen"
+            component={OrderDeliverScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="IPhone13mini_5"
-            component={IPhone13mini_5}
+            name="OrderPickupScreen"
+            component={OrderDeliverScreen} 
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="IPhone13mini_6"
-            component={IPhone13mini_6}
+            name="ThankYouMessageScreen"
+            component={ThankYouMessageScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen

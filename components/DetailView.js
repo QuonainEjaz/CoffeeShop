@@ -8,7 +8,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-const IPhone13mini_3 = ({navigation}) => {
+const DetailView = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -89,7 +89,7 @@ const IPhone13mini_3 = ({navigation}) => {
         <Text style={styles.price}>$ 4.53</Text>
         <TouchableOpacity
           style={styles.buyButton}
-          onPress={() => navigation.navigate('IPhone13mini_4')}>
+          onPress={() => navigation.navigate('OrderDeliverScreen')}>
           <Text style={styles.buyButtonText}>Buy Now</Text>
         </TouchableOpacity>
       </View>
@@ -283,4 +283,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone13mini_3;
+export default DetailView;

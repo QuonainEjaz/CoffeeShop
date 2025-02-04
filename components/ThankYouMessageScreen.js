@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import React from 'react';
 
-const IPhone13mini_6 = ({navigation}) => {
+const ThankYouMessageScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -117,4 +117,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IPhone13mini_6;
+export default ThankYouMessageScreen;
