@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  
 } from 'react-native';
 
 const DetailView = ({navigation}) => {
@@ -15,32 +16,32 @@ const DetailView = ({navigation}) => {
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.icon}
-            onPress={() => navigation.goBack()}>
+            onPress={() => navigation.navigate('HomeScreen')}>
             <Image
-              source={require('../assets/pics/img3.png')}
+              source={require('../assets/pics/arrowLeft.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
           <Text style={styles.headerText}>Detail</Text>
           <TouchableOpacity style={styles.icon}>
             <Image
-              source={require('../assets/pics/img2.png')}
+              source={require('../assets/pics/Heart.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
         </View>
         <Image
-          source={require('../assets/pics/card-img1.png')}
+          source={require('../assets/pics/cardImg1.png')}
           style={styles.coffeeImage}
         />
 
         <Image
           source={require('../assets/pics/img1.png')}
-          style={{width: 50, height: 50, top: 65, left: 240}}
+          style={styles.img1}
         />
         <Image
           source={require('../assets/pics/img4.png')}
-          style={{width: 50, height: 50, top: 15, left: 310}}
+          style={styles.img4}
         />
         <View style={styles.infoContainer}>
           <Text style={styles.title}>Cappucino</Text>
@@ -65,7 +66,7 @@ const DetailView = ({navigation}) => {
           <Text style={styles.descriptionTitle}>Description</Text>
           <Text style={styles.description}>
             A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml
-            of espresso coffee and 85ml of fresh milk the fo..{' '}
+            of espresso coffee and 85ml of fresh milk the fo...
             <Text style={styles.readMore}>Read More</Text>
           </Text>
         </View>
@@ -241,6 +242,7 @@ const styles = StyleSheet.create({
     color: '#C67C4E',
   },
   priceTitle: {
+    width: '50%',
     fontSize: 18,
     color: '#9B9B9B',
     marginTop: -25,
@@ -256,7 +258,6 @@ const styles = StyleSheet.create({
     paddingBottom: 60,
     borderWidth: 1,
     borderColor: '#F1F1F1',
-    backgroundColor: '#F9F9F9',
     marginTop: -20,
     top: 20,
     borderTopEndRadius: 35,
@@ -287,6 +288,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FFF',
   },
+  img1: {width: 50, height: 50, top: 65, left: 250},
+  img4: {width: 50, height: 50, top: 15, left: 310}
 });
 
 export default DetailView;

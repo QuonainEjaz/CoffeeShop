@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Image,
-  StatusBar
+  StatusBar,
 } from 'react-native';
 
 const SplashScreen = ({ navigation }) => {
@@ -16,7 +16,7 @@ const SplashScreen = ({ navigation }) => {
       <StatusBar BarStyle="light-content" style={{ backgroundColor: '#010101' }} />
       <ImageBackground
         style={styles.bg1}
-        source={require('../assets/pics/bg1.png')}>
+        source={require('../assets/pics/background.png')}>
         <Text style={styles.text}>
           Coffee so good, your taste buds will love it.
         </Text>
@@ -26,7 +26,7 @@ const SplashScreen = ({ navigation }) => {
           The best grain, the finest roast, the powerful flavor.
         </Text>
         <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('HomeScreen')}>
-          <Image style={{width: 33, height: 33, left:-8}} source={require('../assets/pics/Google-Logo.png')} />
+          <Image style={{width: 33, height: 33, left:-8}} source={require('../assets/pics/googleLogo.png')} />
           <Text style={{fontSize: 20, color: '#0000008A', fontWeight: 500}}>Continue with Google</Text>
         </TouchableOpacity>
       </View>

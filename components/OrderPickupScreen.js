@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView,} from 'react-native';
 
 
 const OrderPickupScreen = ({navigation}) => {
@@ -15,7 +15,7 @@ const OrderPickupScreen = ({navigation}) => {
       <View style={styles.header} >
         <TouchableOpacity onPress={()=>navigation.goBack()}>
           <Image
-            source={require('../assets/pics/img3.png')}
+            source={require('../assets/pics/arrowLeft.png')}
             style={styles.icon}
           />
         </TouchableOpacity>
@@ -78,7 +78,7 @@ const OrderPickupScreen = ({navigation}) => {
       {/* Coffee Item */}
       <View style={styles.itemContainer}>
         <Image
-          source={require('../assets/pics/card-img1.png')}
+          source={require('../assets/pics/cardImg1.png')}
           style={styles.itemImage}
         />
         <View style={styles.itemDetails}>
@@ -86,15 +86,14 @@ const OrderPickupScreen = ({navigation}) => {
           <Text style={styles.itemSubtitle}>with Chocolate</Text>
         </View>
         <View style={styles.quantityContainer}>
-          <TouchableOpacity
-            onPress={() => setQuantity(Math.max(1, quantity - 1))}>
+          <TouchableOpacity>
             <Image
               source={require('../assets/pics/minus.png')}
               style={styles.quantityIcon}
             />
           </TouchableOpacity>
           <Text style={styles.quantityText}>{quantity}</Text>
-          <TouchableOpacity onPress={() => setQuantity(quantity + 1)}>
+          <TouchableOpacity >
             <Image
               source={require('../assets/pics/plus.png')}
               style={styles.quantityIcon}
@@ -113,9 +112,9 @@ const OrderPickupScreen = ({navigation}) => {
           source={require('../assets/pics/Discount.png')}
           style={{width: 30, height: 30}}
         />
-        <Text style={styles.discountText}> 1 Discount is applied</Text>
+        <Text style={styles.discountText}>     1 Discount is applied</Text>
         <Image
-          source={require('../assets/pics/arrow-right.png')}
+          source={require('../assets/pics/arrowRight.png')}
           style={styles.discountArrow}
         />
       </TouchableOpacity>
@@ -183,7 +182,9 @@ const styles = {
     marginLeft: 135,
     color: '#2F2D2C',
   },
-
+  icon:{
+    width: 28,
+    height: 28,},
   toggleContainer: {
     flexDirection: 'row',
     backgroundColor: '#eee',
@@ -254,7 +255,8 @@ const styles = {
   itemSubtitle: {fontSize: 14, color: '#888'},
   quantityContainer: {flexDirection: 'row', alignItems: 'center'},
   quantityText: {marginHorizontal: 10, fontSize: 18, fontWeight: 'bold'},
-
+  quantityIcon: {width: 28, height: 28},
+  discountArrow: {width: 28, height: 28},
   discountContainer: {
     flexDirection: 'row',
     alignItems: 'center',

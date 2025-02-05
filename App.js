@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import SplashScreen from './components/SplashScreen';
 import HomeScreen from './components/HomeScreen';
 import DetailView from './components/DetailView';
@@ -17,11 +16,12 @@ enableScreens();
 const App = () => {
   return (
     <NavigationContainer >
-        <Stack.Navigator initialRouteName="SplashScreen">
+        <Stack.Navigator initialRouteName="SplashScreen"  >
           <Stack.Screen
             name="SplashScreen"
             component={SplashScreen}
             options={{headerShown: false}}
+            
           />
           <Stack.Screen
             name="HomeScreen"
@@ -40,7 +40,7 @@ const App = () => {
           />
           <Stack.Screen
             name="OrderPickupScreen"
-            component={OrderDeliverScreen} 
+            component={OrderPickupScreen} 
             options={{headerShown: false}}
           />
           <Stack.Screen

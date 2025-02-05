@@ -146,6 +146,27 @@ const Home = ({navigation}) => {
     </SafeAreaView>
   );
 };
+const Favourites = () => {
+  return (
+    <View style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
+      <Text >These are My favourities</Text>
+    </View>
+  );
+};
+const Cart = () => {
+  return (
+    <View style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
+      <Text >This is Cart</Text>
+    </View>
+  );
+};
+const Notification = () => {
+  return (
+    <View style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
+      <Text >These are Notification</Text>
+    </View>
+  );
+};
 
 const HomeScreen = () => {
   return (
@@ -166,7 +187,7 @@ const HomeScreen = () => {
       />
       <Tab.Screen
         name="Favorites"
-        component={Home}
+        component={Favourites}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -178,8 +199,8 @@ const HomeScreen = () => {
         }}
       />
       <Tab.Screen
-        name="."
-        component={Home}
+        name="Cart"
+        component={Cart}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
@@ -191,8 +212,8 @@ const HomeScreen = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Home}
+        name="Notification"
+        component={Notification}
         options={{
           tabBarLabel: '',
           tabBarIcon: () => (
