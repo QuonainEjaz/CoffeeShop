@@ -1,60 +1,37 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView,} from 'react-native';
-
-
-const OrderPickupScreen = ({navigation}) => {
-  const [deliveryType, setDeliveryType] = useState('Pick Up');
-  const [quantity, setQuantity] = useState(1);
-  const price = 4.53;
-  const deliveryFee = 1.0;
-  const totalPayment = (price + deliveryFee).toFixed(2);
-
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+const OrderDeliverScreen = () => {
   return (
-    <ScrollView style={styles.container}>
-      {/* Header */}
-      <View style={styles.header} >
-        <TouchableOpacity onPress={()=>navigation.goBack()}>
-          <Image
-            source={require('../assets/pics/arrowLeft.png')}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Order</Text>
+    <View>
+      <Text style={styles.sectionTitle}>Delivery Address</Text>
+      <View style={styles.addressContainer}>
+        <Text style={styles.addressTitle}>Jl. Kpg Sutoyo</Text>
+        <Text style={styles.addressDetail}>
+          Kpg. Sutoyo No. 620, Bilzen, Tanjungbalai.
+        </Text>
+        <View style={styles.addressButtons}>
+          <TouchableOpacity style={styles.addressButton}>
+            <Image
+              source={require('../assets/pics/edit.png')}
+              style={{width: 17, height: 17}}
+            />
+            <Text style={styles.addressButtonText}> Edit Address</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.addressButton}>
+            <Image
+              source={require('../assets/pics/note.png')}
+              style={{width: 17, height: 17}}
+            />
+            <Text style={styles.addressButtonText}> Add Note</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      {/* Delivery Toggle */}
-      <View style={styles.toggleContainer}>
-        <TouchableOpacity
-          style={[
-            styles.toggleButton,
-            deliveryType === 'Delivery' && styles.activeToggle,
-          ]}
-          onPress={() => {setDeliveryType('Delivery'); navigation.navigate('OrderDeliverScreen')}}>
-          <Text
-            style={[
-              styles.toggleText,
-              deliveryType === 'Delivery' && styles.activeToggleText,
-            ]}>
-            Deliver
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.toggleButton,
-            deliveryType === 'Pick Up' && styles.activeToggle,
-          ]}
-          onPress={() => setDeliveryType('Pick Up')}>
-          <Text
-            style={[
-              styles.toggleText,
-              deliveryType === 'Pick Up' && styles.activeToggleText,
-            ]}>
-            Pick Up
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* Delivery Address */}
+    </View>
+  );
+};
+const OrderPickupScreen = () => {
+  return (
+    <View>
       <Text style={styles.sectionTitle}>Pickup Address</Text>
       <View style={styles.addressContainer}>
         <Text style={styles.addressTitle}>The Coffee Shop</Text>
@@ -71,29 +48,86 @@ const OrderPickupScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Image
-        source={require('../assets/pics/Line.png')}
-        style={{width: 355, height: 1, marginBottom: 20, marginLeft: 10}}
-      />
-      {/* Coffee Item */}
+    </View>
+  );
+};
+
+const Order = ({route,navigation}) => {
+  const [deliveryType, setDeliveryType] = useState('Delivery');
+  const [quantity, setQuantity] = useState(1);
+  const product = route.params;
+  const deliveryFee = 1.0;
+  const totalPayment = ((product?.Price  * quantity)+ deliveryFee)?.toFixed(2);
+   console.log(product);
+  return (
+    <View style={styles.container}>
+    <ScrollView 
+    showsVerticalScrollIndicator={false}
+    >
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image
+            source={require('../assets/pics/arrowLeft.png')}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Order</Text>
+      </View>
+
+      <View style={styles.toggleContainer}>
+        <TouchableOpacity
+          style={[
+            styles.toggleButton,
+            deliveryType === 'Delivery' && styles.activeToggle,
+          ]}
+          onPress={() => setDeliveryType('Delivery')}>
+          <Text
+            style={[
+              styles.toggleText,
+              deliveryType === 'Delivery' && styles.activeToggleText,
+            ]}>
+            Deliver
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.toggleButton,
+            deliveryType === 'Pick Up' && styles.activeToggle,
+          ]}
+          onPress={() => {
+            setDeliveryType('Pick Up');
+          }}>
+          <Text
+            style={[
+              styles.toggleText,
+              deliveryType === 'Pick Up' && styles.activeToggleText,
+            ]}>
+            Pick Up
+          </Text>
+        </TouchableOpacity>
+      </View>
+        {deliveryType === 'Delivery' ? <OrderDeliverScreen /> : <OrderPickupScreen />}
+      <Image source={require('../assets/pics/Line.png')} style={styles.line} />
+
       <View style={styles.itemContainer}>
         <Image
           source={require('../assets/pics/cardImg1.png')}
           style={styles.itemImage}
         />
         <View style={styles.itemDetails}>
-          <Text style={styles.itemTitle}>Cappucino</Text>
+          <Text style={styles.itemTitle}>{product.name}</Text>
           <Text style={styles.itemSubtitle}>with Chocolate</Text>
         </View>
         <View style={styles.quantityContainer}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setQuantity(Math.max(1, quantity - 1))}>
             <Image
               source={require('../assets/pics/minus.png')}
               style={styles.quantityIcon}
             />
           </TouchableOpacity>
           <Text style={styles.quantityText}>{quantity}</Text>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={() => setQuantity(quantity + 1)}>
             <Image
               source={require('../assets/pics/plus.png')}
               style={styles.quantityIcon}
@@ -106,32 +140,30 @@ const OrderPickupScreen = ({navigation}) => {
         style={{width: 410, height: 4, marginBottom: 10, marginLeft: -20}}
       />
 
-      {/* Discount */}
       <TouchableOpacity style={styles.discountContainer}>
         <Image
           source={require('../assets/pics/Discount.png')}
           style={{width: 30, height: 30}}
         />
-        <Text style={styles.discountText}>     1 Discount is applied</Text>
+        <Text style={styles.discountText}>   1 Discount is applied</Text>
         <Image
           source={require('../assets/pics/arrowRight.png')}
           style={styles.discountArrow}
         />
       </TouchableOpacity>
 
-      {/* Payment Summary */}
       <Text style={styles.sectionTitle}>Payment Summary</Text>
       <View style={styles.paymentRow}>
         <Text style={styles.paymentText}>Price</Text>
         <Text style={[styles.paymentText, {fontWeight: 'bold'}]}>
-          $ {price.toFixed(2)}
+          $ {Number(product.Price).toFixed(2)}
         </Text>
       </View>
       <View style={styles.paymentRow}>
         <Text style={styles.paymentText}>Delivery Fee</Text>
         <Text style={[styles.paymentText, {fontWeight: 'bold'}]}>
           <Text style={styles.strikeThrough}>$2.0</Text> ${' '}
-          {deliveryFee.toFixed(1)}
+          {deliveryFee?.toFixed(1)}
         </Text>
       </View>
       <Image
@@ -150,50 +182,74 @@ const OrderPickupScreen = ({navigation}) => {
           $ {totalPayment}
         </Text>
       </View>
-      {/* Payment Method */}
-      <View style={{marginTop: 20,borderColor: '#F1F1F1', borderWidth: 1,marginHorizontal: -20, borderTopEndRadius: 40, borderTopStartRadius: 40,paddingHorizontal: 30}}>
+
+      
+    </ScrollView>
+    <View
+        style={{
+          borderColor: '#F1F1F1',
+          borderWidth: 1,
+          marginHorizontal: -20,
+          borderTopEndRadius: 40,
+          borderTopStartRadius: 40,
+          paddingHorizontal: 30,
+        }}>
         <View style={styles.paymentMethod}>
           <TouchableOpacity style={styles.paymentMethodButton}>
-            <Image source={require('../assets/pics/moneys.png')} style={{width: 28, height: 28, marginTop: 0, marginLeft: 10, marginRight: 10}}/>
+            <Image
+              source={require('../assets/pics/moneys.png')}
+              style={{
+                width: 28,
+                height: 28,
+                marginTop: 0,
+                marginLeft: 10,
+                marginRight: 10,
+              }}
+            />
             <Text style={styles.paymentMethodText}> Cash </Text>
             <Text style={styles.paymentAmount}>$ {totalPayment}</Text>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Image source={require('../assets/pics/dots.png')} style={{width: 28, height: 28, marginTop: 10, marginRight: 10}}/>
+            <Image
+              source={require('../assets/pics/dots.png')}
+              style={{width: 28, height: 28, marginTop: 10, marginRight: 10}}
+            />
           </TouchableOpacity>
         </View>
 
-        {/* Order Button */}
-        <TouchableOpacity style={styles.orderButton} onPress={()=>navigation.navigate('ThankYouMessageScreen')}>
+        <TouchableOpacity
+          style={styles.orderButton}
+          onPress={() => navigation.navigate('ThankYouMessageScreen', {deliveryType})}>
           <Text style={styles.orderButtonText}>Order</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
-// Styles
 const styles = {
-  container: {flex: 1, padding: 20, backgroundColor: '#F9F9F9'},
-  header: {flexDirection: 'row', alignItems: 'center', marginBottom: 20},
+  container: {flex: 1, paddingHorizontal: '4%', backgroundColor: '#F9F9F9'},
+  header: {flexDirection: 'row', alignItems: 'center',marginTop: '5%', marginBottom: '5%'},
   headerTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    marginLeft: 135,
+    marginHorizontal: '35%',
     color: '#2F2D2C',
   },
-  icon:{
+  icon: {
     width: 28,
-    height: 28,},
+    height: 28,
+  },
   toggleContainer: {
     flexDirection: 'row',
+    justifycontent: 'space-between',
     backgroundColor: '#eee',
     borderRadius: 20,
     padding: 5,
     marginBottom: 20,
     height: 55,
   },
-  toggleButton: {flex: 1, padding: 10, alignItems: 'center', borderRadius: 15},
+  toggleButton: {flex: 1, alignItems: 'center', borderRadius: 15,alignItems: 'center',justifyContent: 'center'},
   activeToggle: {backgroundColor: '#C67C4E'},
   toggleText: {fontSize: 16, color: '#2F2D2C', fontWeight: '600'},
   activeToggleText: {color: '#ffffff', fontWeight: '600'},
@@ -219,6 +275,7 @@ const styles = {
     marginBottom: 15,
     marginTop: -5,
   },
+  line: {width: 355, height: 1, marginBottom: 20, marginLeft: 10},
   addressButtons: {flexDirection: 'row', left: -5},
   addressButton: {
     flexDirection: 'row',
@@ -256,7 +313,6 @@ const styles = {
   quantityContainer: {flexDirection: 'row', alignItems: 'center'},
   quantityText: {marginHorizontal: 10, fontSize: 18, fontWeight: 'bold'},
   quantityIcon: {width: 28, height: 28},
-  discountArrow: {width: 28, height: 28},
   discountContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -269,7 +325,7 @@ const styles = {
     marginTop: 10,
   },
   discountText: {flex: 1, fontSize: 18, fontWeight: '600'},
-
+  discountArrow: {width: 28, height: 28},
   paymentRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -278,29 +334,44 @@ const styles = {
   },
   paymentText: {fontSize: 17},
   paymentTotal: {fontSize: 18, fontWeight: '400'},
-  strikeThrough: {textDecorationLine: 'line-through', color: '#888'},
+  strikeThrough: {
+    textDecorationLine: 'line-through',
+    color: '#000010',
+    fontWeight: '400',
+  },
 
   paymentMethod: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: '5%',
+    paddingTop: '5%',
   },
   paymentMethodButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
     borderRadius: 10,
   },
-  paymentMethodText: {fontSize: 16, marginLeft: 10,backgroundColor: '#C67C4E', borderRadius: 20,color: '#ffffff', fontWeight: '400', padding: 3},
-  paymentAmount: {fontSize: 16, marginLeft: 10},
+  paymentMethodText: {
+    fontSize: 16,
+    marginLeft: 15,
+    backgroundColor: '#C67C4E',
+    borderRadius: 20,
+    color: '#ffffff',
+    fontWeight: '900',
+    padding: 5,
+    paddingHorizontal: 15,
+  },
+  paymentAmount: {fontSize: 16, marginLeft: 10,fontWeight: '500',fontSize: 18, },
 
   orderButton: {
     backgroundColor: '#C67C4E',
     padding: 15,
     borderRadius: 20,
     alignItems: 'center',
+    marginBottom: '5%', 
+    marginHorizontal: '1%',
   },
   orderButtonText: {fontSize: 18, color: '#fff', fontWeight: 'bold'},
 };
 
-export default OrderPickupScreen;
+export default Order;

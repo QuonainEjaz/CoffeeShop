@@ -2,10 +2,10 @@ import React from 'react';
 import SplashScreen from './components/SplashScreen';
 import HomeScreen from './components/HomeScreen';
 import DetailView from './components/DetailView';
-import OrderDeliverScreen from './components/OrderDeliverScreen';
-import  OrderPickupScreen from './components/OrderPickupScreen';
+import Order from './components/Order';
 import ThankYouMessageScreen from './components/ThankYouMessageScreen';
-import TrackOrder from './components/TrackOrder';
+import TrackOrderPickup from './components/TrackOrderPickup';
+import TrackOrderDelivery from './components/TrackOrderDelivery';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -34,13 +34,8 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="OrderDeliverScreen"
-            component={OrderDeliverScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="OrderPickupScreen"
-            component={OrderPickupScreen} 
+            name="Order"
+            component={Order}
             options={{headerShown: false}}
           />
           <Stack.Screen
@@ -49,8 +44,13 @@ const App = () => {
             options={{headerShown: false}}
           />
           <Stack.Screen
-            name="TrackOrder"
-            component={TrackOrder}
+            name="TrackOrderPickup"
+            component={TrackOrderPickup}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TrackOrderDelivery"
+            component={TrackOrderDelivery}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

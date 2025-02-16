@@ -10,25 +10,32 @@ import {
   StatusBar,
 } from 'react-native';
 
-const SplashScreen = ({ navigation }) => {
+const SplashScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar BarStyle="light-content" style={{ backgroundColor: '#010101' }} />
+      <View style={{flex:1}}>
       <ImageBackground
         style={styles.bg1}
-        source={require('../assets/pics/background.png')}>
+        source={require('../assets/pics/background_image.png')}>
+          <View style={{flex:1.6}}></View>
+      <View style={styles.bg2}>
         <Text style={styles.text}>
           Coffee so good, your taste buds will love it.
         </Text>
-      </ImageBackground>
-      <View style={styles.bg2}>
         <Text style={styles.subtext}>
           The best grain, the finest roast, the powerful flavor.
         </Text>
-        <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('HomeScreen')}>
-          <Image style={{width: 33, height: 33, left:-8}} source={require('../assets/pics/googleLogo.png')} />
-          <Text style={{fontSize: 20, color: '#0000008A', fontWeight: 500}}>Continue with Google</Text>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('HomeScreen')}>
+          <Image
+            style={styles.logo}
+            source={require('../assets/pics/googleLogo.png')}
+          />
+          <Text style={styles.buttonText}>Continue with Google</Text>
         </TouchableOpacity>
+      </View>
+      </ImageBackground>
       </View>
     </SafeAreaView>
   );
@@ -40,45 +47,46 @@ const styles = StyleSheet.create({
     backgroundColor: '#010101',
   },
   bg1: {
-    flex: 1.9,
-    justifyContent: 'center',
-    alignItems: 'center',
+    resizeMode:'stretch',
+    height:'100%',
+    width:'100%',
   },
   bg2: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
-    fontSize: 34,
+    fontSize: 42,
     color: '#FFFFFF',
-    fontWeight: 'bold',
-    lineHeight: 42.84,
+    fontWeight: '600',
+    lineHeight: 44.84,
     letterSpacing: 1,
     textAlign: 'center',
-    width: 300,
-    height: 134,
-    marginTop: 630,
+    width: '80%',
+    top: '-12%',
   },
   subtext: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#A9A9A9',
     lineHeight: 21.56,
     letterSpacing: 1,
     textAlign: 'center',
-    width: 314,
-    height: 42,
-    top: 40,
+    width: '80%',
+    marginBottom: '5%',
+    top: '-5%',
   },
+  logo: {width: 35, height: 37, left: -10},
+  buttonText: {fontSize: 25, color: '#0000008A', fontWeight: 500},
   button: {
     backgroundColor: '#FFFFFF',
-    width: 300,
-    height: 54,
-    borderRadius: 10,
+    width: '85%',
+    height: '21%',
+    borderRadius: 12,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    top: 70,
+    marginBottom: '7%',
+    top: '-5%',
   },
 });
 
